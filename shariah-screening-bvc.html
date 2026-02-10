@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screening Shariah AAOIFI — Bourse de Casablanca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Neue+Haas+Grotesk+Display+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:   #1a7a4a;
+      --green-l: #d6efe4;
+      --green-m: #56c68a;
+      --red:     #c0392b;
+      --red-l:   #fde8e6;
+      --amber:   #e67e22;
+      --amber-l: #fef3e2;
+      --ink:     #0d1117;
+      --ink-2:   #3a3f4a;
+      --border:  #d0d5dd;
+      --bg:      #f5f4ef;
+      --card:    #ffffff;
+      --gold:    #b8962e;
+      --gold-l:  #f7f0dc;
+      --geom:    rgba(26,122,74,.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── GEOMETRIC BACKGROUND ─────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, var(--geom) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(90deg, var(--geom) 0 1px, transparent 1px 48px);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── HEADER ───────────────────────────────── */
+    header {
+      position: relative; z-index: 10;
+      background: var(--ink);
+      padding: 0 32px;
+      display: flex; align-items: stretch; gap: 0;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .header-accent {
+      width: 8px;
+      background: linear-gradient(to bottom, var(--green), var(--gold));
+      margin-right: 24px; flex-shrink: 0;
+    }
+
+    .header-content {
+      padding: 24px 0;
+      flex: 1;
+    }
+
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-l); color: var(--gold);
+      font-size: 10px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 3px; margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: .01em;
+    }
+
+    header p {
+      font-size: 11px; color: #8b93a0;
+      margin-top: 6px; letter-spacing: .04em;
+    }
+
+    .header-logo {
+      display: flex; align-items: center; gap: 10px;
+      margin-left: auto; padding: 24px 0;
+    }
+
+    .logo-circle {
+      width: 48px; height: 48px;
+      background: var(--green);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: 'Amiri', serif;
+      font-size: 20px; color: #fff; font-weight: 700;
+    }
+
+    /* ── MAIN WRAPPER ─────────────────────────── */
+    main {
+      position: relative; z-index: 1;
+      max-width: 1320px; margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    /* ── METHODOLOGY CARD ─────────────────────── */
+    .methodology {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .meth-item h3 {
+      font-family: 'Amiri', serif;
+      font-size: 15px; color: var(--gold);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+    }
+
+    .meth-item p { font-size: 11px; color: #9aa0ab; line-height: 1.7; }
+
+    .meth-badge {
+      display: inline-block;
+      background: var(--green); color: #fff;
+      padding: 2px 7px; font-size: 10px; border-radius: 2px;
+    }
+
+    /* ── ADD COMPANY FORM ─────────────────────── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+
+    .form-card h2 {
+      font-family: 'Amiri', serif;
+      font-size: 20px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .form-card h2::before {
+      content: '＋'; font-family: 'IBM Plex Mono', monospace;
+      width: 28px; height: 28px; background: var(--green);
+      color: #fff; display: grid; place-items: center;
+      border-radius: 4px; font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-2); font-weight: 600;
+    }
+
+    .form-group input, .form-group select {
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-hint { font-size: 9px; color: #8b93a0; }
+
+    .btn-screen {
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: var(--green);
+      color: #fff;
+      border: none; border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+
+    .btn-screen:hover { background: #145d38; }
+    .btn-screen:active { transform: scale(.98); }
+
+    /* ── RESULTS SECTION ─────────────────────── */
+    .results-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .results-header h2 {
+      font-family: 'Amiri', serif; font-size: 22px;
+    }
+
+    .counter {
+      font-size: 10px; background: var(--ink); color: var(--gold);
+      padding: 3px 9px; border-radius: 20px; letter-spacing: .06em;
+    }
+
+    /* ── FILTER BAR ───────────────────────────── */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px; border-radius: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer; border: 1.5px solid var(--border);
+      background: var(--card); color: var(--ink-2);
+      transition: all .18s;
+    }
+
+    .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .filter-btn.active-green { background: var(--green); color: #fff; border-color: var(--green); }
+    .filter-btn.active-red { background: var(--red); color: #fff; border-color: var(--red); }
+    .filter-btn.active-amber { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+    /* ── TABLE ────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead th {
+      background: var(--ink);
+      color: #8b93a0;
+      font-size: 9px; letter-spacing: .1em; text-transform: uppercase;
+      padding: 12px 14px; text-align: left;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f0f0ec;
+      transition: background .15s;
+    }
+
+    tbody tr:hover { background: var(--bg); }
+
+    tbody td {
+      padding: 12px 14px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .company-name { font-weight: 600; font-size: 13px; }
+    .ticker {
+      font-size: 10px; color: var(--gold);
+      background: var(--gold-l); padding: 2px 6px; border-radius: 2px;
+    }
+
+    .sector-tag {
+      font-size: 10px; color: var(--ink-2);
+      background: var(--bg); padding: 3px 7px; border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    /* ratio cells */
+    .ratio {
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    .ratio-pass { color: var(--green); }
+    .ratio-fail { color: var(--red); }
+    .ratio-warn { color: var(--amber); }
+    .ratio-na   { color: #aaa; font-style: italic; }
+
+    /* threshold indicator */
+    .bar-wrap {
+      width: 80px; height: 6px;
+      background: #e8e8e2; border-radius: 3px; overflow: hidden;
+      display: inline-block; vertical-align: middle; margin-left: 6px;
+    }
+
+    .bar-fill {
+      height: 100%; border-radius: 3px;
+      transition: width .4s ease;
+    }
+
+    /* verdict badge */
+    .verdict {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 3px;
+      font-size: 10px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .verdict-compliant { background: var(--green-l); color: var(--green); }
+    .verdict-noncompliant { background: var(--red-l); color: var(--red); }
+    .verdict-watchlist { background: var(--amber-l); color: var(--amber); }
+    .verdict-excluded { background: #eee; color: #555; }
+
+    /* ── DETAIL PANEL ─────────────────────────── */
+    .detail-toggle {
+      background: none; border: none; cursor: pointer;
+      color: var(--green); font-size: 11px; font-family: 'IBM Plex Mono', monospace;
+      padding: 3px 8px; border: 1px solid var(--green-l);
+      border-radius: 3px; white-space: nowrap;
+    }
+
+    .detail-row { display: none; }
+    .detail-row.open { display: table-row; }
+
+    .detail-cell {
+      padding: 16px 24px 16px 48px !important;
+      background: #fafaf7;
+      border-left: 3px solid var(--green);
+    }
+
+    .detail-inner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .detail-check { display: flex; flex-direction: column; gap: 4px; }
+    .detail-check .label { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; }
+    .detail-check .value { font-size: 13px; font-weight: 600; }
+    .detail-check .threshold { font-size: 9px; color: #aaa; }
+    .detail-check .note { font-size: 10px; color: var(--ink-2); margin-top: 4px; line-height: 1.5; }
+
+    /* ── SUMMARY STATS ────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 16px 20px;
+    }
+
+    .stat-card .num {
+      font-size: 28px; font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-card .lbl {
+      font-size: 9px; text-transform: uppercase; letter-spacing: .1em;
+      color: #8b93a0; margin-top: 2px;
+    }
+
+    .stat-card.s-green .num { color: var(--green); }
+    .stat-card.s-red .num { color: var(--red); }
+    .stat-card.s-amber .num { color: var(--amber); }
+    .stat-card.s-gray .num { color: #777; }
+
+    /* ── EMPTY STATE ──────────────────────────── */
+    .empty-state {
+      text-align: center; padding: 48px;
+      color: #aaa; font-size: 12px;
+    }
+
+    .empty-state .icon { font-size: 32px; display: block; margin-bottom: 10px; }
+
+    /* ── PURIFICATION NOTE ────────────────────── */
+    .purification-note {
+      display: flex; gap: 8px; align-items: flex-start;
+      background: var(--gold-l); border-left: 3px solid var(--gold);
+      padding: 10px 14px; border-radius: 0 4px 4px 0;
+      font-size: 10px; line-height: 1.7; color: var(--ink-2);
+    }
+
+    .purification-note .icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── DISCLAIMER ───────────────────────────── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      text-align: center;
+      font-size: 10px; color: #9aa0ab; line-height: 1.8;
+    }
+
+    /* ── ANIMATIONS ───────────────────────────── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { animation: fadeIn .35s ease both; }
+
+    /* ── ACTIONS ROW ──────────────────────────── */
+    .actions-row {
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn-demo {
+      padding: 8px 16px;
+      background: var(--gold-l);
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; cursor: pointer;
+      transition: all .18s;
+    }
+
+    .btn-demo:hover { background: var(--gold); color: #fff; }
+
+    .btn-clear {
+      padding: 8px 16px;
+      background: var(--red-l);
+      border: 1.5px solid #dbb;
+      color: var(--red);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; cursor: pointer;
+      transition: all .18s;
+    }
+
+    .btn-clear:hover { background: var(--red); color: #fff; }
+
+    .section-title {
+      font-family: 'Amiri', serif;
+      font-size: 18px; margin-bottom: 6px;
+    }
+
+    .section-sub {
+      font-size: 10px; color: #8b93a0; letter-spacing: .04em;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 640px) {
+      header { padding: 0 16px; }
+      .header-logo { display: none; }
+      main { padding: 20px 12px 40px; }
+      .form-card, .methodology { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ════════════════════════════════════ -->
+<header>
+  <div class="header-accent"></div>
+  <div class="header-content">
+    <div class="header-badge">
+      <span>◈</span> AAOIFI Standard No. 21
+    </div>
+    <h1>Screening Shariah — Bourse de Casablanca</h1>
+    <p>Outil d'analyse de conformité islamique pour les sociétés cotées au MASI</p>
+  </div>
+  <div class="header-logo">
+    <div class="logo-circle">ش</div>
+  </div>
+</header>
+
+<!-- ═══ MAIN ═══════════════════════════════════════ -->
+<main>
+
+  <!-- Methodology cards -->
+  <div class="methodology">
+    <div class="meth-item">
+      <h3>① Screening Qualitatif</h3>
+      <p>Exclusion des secteurs haram : banques conventionnelles, assurances conventionnelles, alcool, tabac, jeux de hasard, armement, porc, contenu immoral.</p>
+    </div>
+    <div class="meth-item">
+      <h3>② Dette Ribawi <span class="meth-badge">≤30%</span></h3>
+      <p>Dettes portant intérêt ÷ Capitalisation boursière. Le ratio ne doit pas dépasser <strong>30%</strong>.</p>
+    </div>
+    <div class="meth-item">
+      <h3>③ Dépôts Ribawi <span class="meth-badge">≤30%</span></h3>
+      <p>Dépôts rémunérés à intérêt (actifs) ÷ Capitalisation boursière. Seuil : <strong>30%</strong>.</p>
+    </div>
+    <div class="meth-item">
+      <h3>④ Revenus Non-Halal <span class="meth-badge">≤5%</span></h3>
+      <p>Revenus de sources prohibées ÷ Revenus totaux. La part illicite ne doit pas excéder <strong>5%</strong>.</p>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <h2>Ajouter une Société</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Société</label>
+        <input type="text" id="f-name" placeholder="ex : Maroc Telecom" />
+      </div>
+      <div class="form-group">
+        <label>Ticker MASI</label>
+        <input type="text" id="f-ticker" placeholder="ex : IAM" />
+      </div>
+      <div class="form-group">
+        <label>Secteur</label>
+        <select id="f-sector">
+          <option value="">— Choisir —</option>
+          <optgroup label="⚠ Exclusion automatique">
+            <option value="BANK_CONV|EXCLU">Banques Conventionnelles</option>
+            <option value="ASSUR_CONV|EXCLU">Assurances Conventionnelles</option>
+            <option value="ALCOOL|EXCLU">Boissons alcoolisées</option>
+            <option value="TABAC|EXCLU">Tabac</option>
+            <option value="JEUX|EXCLU">Jeux de hasard</option>
+          </optgroup>
+          <optgroup label="✓ Secteurs analysables">
+            <option value="TELECOM">Télécommunications</option>
+            <option value="IMM">Immobilier / BTP</option>
+            <option value="AGRO">Agroalimentaire & Boissons (halal)</option>
+            <option value="ENERGIE">Énergie / Pétrole & Gaz</option>
+            <option value="MINES">Mines & Matières premières</option>
+            <option value="INDUSTRIE">Industries & Matériaux</option>
+            <option value="DISTRIB">Grande Distribution</option>
+            <option value="TRANSPORT">Transport</option>
+            <option value="HOLDING">Holdings & Participations</option>
+            <option value="SANTE">Santé & Pharmacie</option>
+            <option value="AGRI">Agriculture</option>
+            <option value="IT">Technologies & Services informatiques</option>
+            <option value="AUTRE">Autre (préciser dans note)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Capitalisation boursière (MDH)</label>
+        <input type="number" id="f-mktcap" placeholder="ex : 145000" min="0" />
+        <span class="form-hint">En millions de dirhams</span>
+      </div>
+      <div class="form-group">
+        <label>Dettes à intérêts (MDH)</label>
+        <input type="number" id="f-debt" placeholder="ex : 18000" min="0" />
+        <span class="form-hint">Dettes financières rémunérées</span>
+      </div>
+      <div class="form-group">
+        <label>Dépôts / Placements ribawi (MDH)</label>
+        <input type="number" id="f-deposits" placeholder="ex : 3000" min="0" />
+        <span class="form-hint">Placements portant intérêt</span>
+      </div>
+      <div class="form-group">
+        <label>Revenus totaux (MDH)</label>
+        <input type="number" id="f-revenue" placeholder="ex : 34000" min="0" />
+      </div>
+      <div class="form-group">
+        <label>Revenus non-halal (MDH)</label>
+        <input type="number" id="f-haram-rev" placeholder="ex : 500" min="0" />
+        <span class="form-hint">Intérêts + dividendes ribawi + autres</span>
+      </div>
+    </div>
+    <button class="btn-screen" onclick="addCompany()">▶ Lancer le Screening</button>
+  </div>
+
+  <!-- Action bar -->
+  <div class="actions-row">
+    <button class="btn-demo" onclick="loadDemo()">⟳ Charger les sociétés BVC (démo)</button>
+    <button class="btn-clear" onclick="clearAll()">✕ Effacer tout</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row" id="stats-row">
+    <div class="stat-card s-green">
+      <div class="num" id="st-compliant">0</div>
+      <div class="lbl">✓ Conformes</div>
+    </div>
+    <div class="stat-card s-amber">
+      <div class="num" id="st-watch">0</div>
+      <div class="lbl">⚠ Sous surveillance</div>
+    </div>
+    <div class="stat-card s-red">
+      <div class="num" id="st-noncompliant">0</div>
+      <div class="lbl">✕ Non conformes</div>
+    </div>
+    <div class="stat-card s-gray">
+      <div class="num" id="st-excluded">0</div>
+      <div class="lbl">⊘ Exclus (secteur)</div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-header">
+    <h2 class="section-title">Résultats du Screening</h2>
+    <span class="counter" id="total-counter">0 société</span>
+  </div>
+  <p class="section-sub">Standard AAOIFI SS-21 · Ratios calculés sur capitalisation boursière · Données indicatives</p>
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">Toutes</button>
+    <button class="filter-btn" data-filter="CONFORME" onclick="setFilter('CONFORME',this)">✓ Conformes</button>
+    <button class="filter-btn" data-filter="SURVEILLANCE" onclick="setFilter('SURVEILLANCE',this)">⚠ Surveillance</button>
+    <button class="filter-btn" data-filter="NON_CONFORME" onclick="setFilter('NON_CONFORME',this)">✕ Non conformes</button>
+    <button class="filter-btn" data-filter="EXCLU" onclick="setFilter('EXCLU',this)">⊘ Exclus</button>
+  </div>
+
+  <div class="table-wrap">
+    <table id="result-table">
+      <thead>
+        <tr>
+          <th>Société</th>
+          <th>Secteur</th>
+          <th>Capitalisation</th>
+          <th>Dette Ribawi / Mkt Cap</th>
+          <th>Dépôts Ribawi / Mkt Cap</th>
+          <th>Rev. Non-Halal / Rev. Total</th>
+          <th>Verdict AAOIFI</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <tr><td colspan="8" class="empty-state"><span class="icon">🕌</span>Ajoutez des sociétés ou chargez les données de démonstration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Purification note -->
+  <div class="purification-note" style="margin-top:20px;">
+    <span class="icon">☪</span>
+    <div>
+      <strong>Purification (Tazkyya) :</strong> Pour les sociétés conformes ayant des revenus non-halal résiduels (≤5%), l'actionnaire doit purifier ses dividendes en versant la proportion correspondante à une œuvre caritative. Ex : si 2% des revenus sont illicites, reverser 2% du dividende perçu.
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════ -->
+<footer>
+  Outil de screening à titre indicatif uniquement. Les données financières doivent être vérifiées sur les rapports annuels officiels des émetteurs (AMMC / Bourse de Casablanca).<br>
+  Conforme aux critères du Standard Shariah N°21 de l'AAOIFI (Accounting and Auditing Organization for Islamic Financial Institutions).<br>
+  <strong>Cet outil ne constitue pas un avis juridique ou un conseil en investissement Shariah certifié.</strong>
+</footer>
+
+<!-- ═══ SCRIPT ════════════════════════════════════ -->
+<script>
+  // ── STATE ──────────────────────────────────────────
+  let companies = [];
+  let currentFilter = 'all';
+
+  const SECTORS_FR = {
+    'TELECOM': 'Télécommunications',
+    'IMM': 'Immobilier / BTP',
+    'AGRO': 'Agroalimentaire',
+    'ENERGIE': 'Énergie / Pétrole & Gaz',
+    'MINES': 'Mines',
+    'INDUSTRIE': 'Industries',
+    'DISTRIB': 'Grande Distribution',
+    'TRANSPORT': 'Transport',
+    'HOLDING': 'Holdings',
+    'SANTE': 'Santé & Pharmacie',
+    'AGRI': 'Agriculture',
+    'IT': 'Technologies',
+    'AUTRE': 'Autre',
+    'BANK_CONV': 'Banques Conventionnelles',
+    'ASSUR_CONV': 'Assurances Conventionnelles',
+    'ALCOOL': 'Boissons Alcoolisées',
+    'TABAC': 'Tabac',
+    'JEUX': 'Jeux de Hasard',
+  };
+
+  // ── SCREENING LOGIC ────────────────────────────────
+  function screen(c) {
+    const sectorParts = c.sector.split('|');
+    const sectorCode = sectorParts[0];
+    const isExcluded = sectorParts[1] === 'EXCLU';
+
+    if (isExcluded) return { verdict: 'EXCLU', debtRatio: null, depRatio: null, revRatio: null, sectorCode };
+
+    if (!c.mktcap || c.mktcap <= 0) return { verdict: 'EXCLU', debtRatio: null, depRatio: null, revRatio: null, sectorCode };
+
+    const debtRatio  = (c.debt / c.mktcap) * 100;
+    const depRatio   = (c.deposits / c.mktcap) * 100;
+    const revRatio   = c.revenue > 0 ? (c.haramRev / c.revenue) * 100 : 0;
+
+    const debtPass   = debtRatio <= 30;
+    const depPass    = depRatio <= 30;
+    const revPass    = revRatio <= 5;
+
+    // Watchlist: at least one ratio between 80% of threshold and threshold
+    const debtWarn   = debtRatio > 24 && debtRatio <= 30;
+    const depWarn    = depRatio > 24 && depRatio <= 30;
+    const revWarn    = revRatio > 4 && revRatio <= 5;
+
+    let verdict;
+    if (!debtPass || !depPass || !revPass) {
+      verdict = 'NON_CONFORME';
+    } else if (debtWarn || depWarn || revWarn) {
+      verdict = 'SURVEILLANCE';
+    } else {
+      verdict = 'CONFORME';
+    }
+
+    return { verdict, debtRatio, depRatio, revRatio, sectorCode };
+  }
+
+  // ── ADD COMPANY ────────────────────────────────────
+  function addCompany() {
+    const name     = document.getElementById('f-name').value.trim();
+    const ticker   = document.getElementById('f-ticker').value.trim().toUpperCase();
+    const sector   = document.getElementById('f-sector').value;
+    const mktcap   = parseFloat(document.getElementById('f-mktcap').value) || 0;
+    const debt     = parseFloat(document.getElementById('f-debt').value) || 0;
+    const deposits = parseFloat(document.getElementById('f-deposits').value) || 0;
+    const revenue  = parseFloat(document.getElementById('f-revenue').value) || 0;
+    const haramRev = parseFloat(document.getElementById('f-haram-rev').value) || 0;
+
+    if (!name || !sector) {
+      alert('Veuillez saisir au minimum la société et le secteur.');
+      return;
+    }
+
+    companies.push({ id: Date.now(), name, ticker, sector, mktcap, debt, deposits, revenue, haramRev });
+    clearForm();
+    render();
+  }
+
+  function clearForm() {
+    ['f-name','f-ticker','f-mktcap','f-debt','f-deposits','f-revenue','f-haram-rev']
+      .forEach(id => document.getElementById(id).value = '');
+    document.getElementById('f-sector').value = '';
+  }
+
+  function clearAll() {
+    if (companies.length === 0 || confirm('Effacer toutes les sociétés ?')) {
+      companies = [];
+      render();
+    }
+  }
+
+  // ── DEMO DATA (BVC representative companies) ───────
+  function loadDemo() {
+    companies = [
+      // Conformes
+      { id:1, name:'Maroc Telecom', ticker:'IAM', sector:'TELECOM',
+        mktcap:144000, debt:12000, deposits:2500, revenue:33800, haramRev:320 },
+      { id:2, name:'OCP S.A.', ticker:'OCP', sector:'MINES',
+        mktcap:127000, debt:31000, deposits:4100, revenue:52000, haramRev:890 },
+      { id:3, name:'Cosumar', ticker:'CSR', sector:'AGRO',
+        mktcap:16000, debt:2100, deposits:800, revenue:8200, haramRev:140 },
+      { id:4, name:'LafargeHolcim Maroc', ticker:'LHM', sector:'INDUSTRIE',
+        mktcap:27000, debt:5400, deposits:1200, revenue:7600, haramRev:210 },
+      { id:5, name:'Alliances Développement Immobilier', ticker:'ADI', sector:'IMM',
+        mktcap:5200, debt:1200, deposits:300, revenue:2100, haramRev:45 },
+      { id:6, name:'Afriquia Gaz', ticker:'GAZ', sector:'ENERGIE',
+        mktcap:18000, debt:800, deposits:900, revenue:5400, haramRev:95 },
+      { id:7, name:'Auto Hall', ticker:'AUTO', sector:'DISTRIB',
+        mktcap:5100, debt:700, deposits:400, revenue:3900, haramRev:80 },
+      { id:8, name:'Marsa Maroc', ticker:'MARS', sector:'TRANSPORT',
+        mktcap:9800, debt:1100, deposits:500, revenue:3200, haramRev:55 },
+      { id:9, name:'Label Vie', ticker:'LBV', sector:'DISTRIB',
+        mktcap:9600, debt:2400, deposits:600, revenue:10200, haramRev:180 },
+      { id:10, name:'Sothema', ticker:'SOT', sector:'SANTE',
+        mktcap:7800, debt:900, deposits:350, revenue:2900, haramRev:50 },
+      { id:11, name:'Cartier Saada', ticker:'CRS', sector:'AGRI',
+        mktcap:750, debt:85, deposits:40, revenue:410, haramRev:8 },
+      { id:12, name:'Aluminium du Maroc', ticker:'ALM', sector:'INDUSTRIE',
+        mktcap:1900, debt:210, deposits:80, revenue:1200, haramRev:22 },
+      // Surveillance
+      { id:13, name:'Douja Prom Addoha', ticker:'ADH', sector:'IMM',
+        mktcap:7200, debt:1650, deposits:1900, revenue:4800, haramRev:195 },
+      { id:14, name:'Taqa Morocco', ticker:'TAQ', sector:'ENERGIE',
+        mktcap:9100, debt:2150, deposits:1850, revenue:3100, haramRev:148 },
+      // Non conformes (dette ou revenus)
+      { id:15, name:'Attijariwafa Bank', ticker:'ATW', sector:'BANK_CONV|EXCLU',
+        mktcap:68000, debt:0, deposits:0, revenue:22000, haramRev:0 },
+      { id:16, name:'BCP (Banque Centrale Populaire)', ticker:'BCP', sector:'BANK_CONV|EXCLU',
+        mktcap:53000, debt:0, deposits:0, revenue:19000, haramRev:0 },
+      { id:17, name:'Bank of Africa (BMCE)', ticker:'BOA', sector:'BANK_CONV|EXCLU',
+        mktcap:22000, debt:0, deposits:0, revenue:11000, haramRev:0 },
+      { id:18, name:'BMCI', ticker:'BMC', sector:'BANK_CONV|EXCLU',
+        mktcap:9200, debt:0, deposits:0, revenue:4500, haramRev:0 },
+      { id:19, name:'CIH Bank', ticker:'CIH', sector:'BANK_CONV|EXCLU',
+        mktcap:9800, debt:0, deposits:0, revenue:3800, haramRev:0 },
+      { id:20, name:'Société des Boissons du Maroc', ticker:'SBM', sector:'ALCOOL|EXCLU',
+        mktcap:6500, debt:0, deposits:0, revenue:2200, haramRev:0 },
+      { id:21, name:'Wafa Assurance', ticker:'WAF', sector:'ASSUR_CONV|EXCLU',
+        mktcap:14000, debt:0, deposits:0, revenue:6200, haramRev:0 },
+      { id:22, name:'Atlanta Sanad', ticker:'ATL', sector:'ASSUR_CONV|EXCLU',
+        mktcap:9200, debt:0, deposits:0, revenue:4100, haramRev:0 },
+      // Non conforme (ratio financier)
+      { id:23, name:'Résidences Dar Saada', ticker:'RDS', sector:'IMM',
+        mktcap:3100, debt:1150, deposits:980, revenue:2100, haramRev:112 },
+    ];
+    render();
+  }
+
+  // ── FILTER ─────────────────────────────────────────
+  function setFilter(f, btn) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active','active-green','active-red','active-amber');
+    });
+    if (f === 'all') btn.classList.add('active');
+    else if (f === 'CONFORME') btn.classList.add('active-green');
+    else if (f === 'NON_CONFORME') btn.classList.add('active-red');
+    else if (f === 'SURVEILLANCE') btn.classList.add('active-amber');
+    else btn.classList.add('active');
+    render();
+  }
+
+  // ── RENDER ─────────────────────────────────────────
+  function render() {
+    const tbody = document.getElementById('result-body');
+    tbody.innerHTML = '';
+
+    // Compute results
+    const results = companies.map(c => ({ ...c, ...screen(c) }));
+
+    // Stats
+    const counts = { CONFORME:0, SURVEILLANCE:0, NON_CONFORME:0, EXCLU:0 };
+    results.forEach(r => counts[r.verdict] = (counts[r.verdict]||0) + 1);
+    document.getElementById('st-compliant').textContent = counts.CONFORME;
+    document.getElementById('st-watch').textContent = counts.SURVEILLANCE;
+    document.getElementById('st-noncompliant').textContent = counts.NON_CONFORME;
+    document.getElementById('st-excluded').textContent = counts.EXCLU;
+
+    // Filter
+    const filtered = currentFilter === 'all' ? results : results.filter(r => r.verdict === currentFilter);
+    document.getElementById('total-counter').textContent = filtered.length + ' société' + (filtered.length !== 1 ? 's' : '');
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="empty-state"><span class="icon">🔍</span>Aucune société dans cette catégorie</td></tr>`;
+      return;
+    }
+
+    filtered.forEach((r, i) => {
+      const id = `detail-${r.id}`;
+      const isExclu = r.verdict === 'EXCLU';
+
+      // Format ratio cells
+      function ratioCell(val, max, passClass) {
+        if (val === null) return `<td class="ratio ratio-na">—</td>`;
+        const cls = val <= max * 0.8 ? 'ratio-pass' : val <= max ? 'ratio-warn' : 'ratio-fail';
+        const pct = Math.min(val / (max * 1.5) * 100, 100);
+        const fillColor = cls === 'ratio-pass' ? '#56c68a' : cls === 'ratio-warn' ? '#e67e22' : '#c0392b';
+        return `<td class="ratio ${cls}">${val.toFixed(1)}%
+          <span class="bar-wrap"><span class="bar-fill" style="width:${pct}%;background:${fillColor}"></span></span>
+        </td>`;
+      }
+
+      const verdictHtml = {
+        'CONFORME':      `<span class="verdict verdict-compliant">✓ Conforme</span>`,
+        'SURVEILLANCE':  `<span class="verdict verdict-watchlist">⚠ Surveillance</span>`,
+        'NON_CONFORME':  `<span class="verdict verdict-noncompliant">✕ Non conforme</span>`,
+        'EXCLU':         `<span class="verdict verdict-excluded">⊘ Exclu</span>`,
+      };
+
+      const mktFmt = r.mktcap > 0 ? (r.mktcap >= 1000 ? (r.mktcap/1000).toFixed(1)+'B' : r.mktcap+'M') + ' MAD' : '—';
+
+      const sectorDisplay = SECTORS_FR[r.sectorCode] || r.sector;
+
+      // Main row
+      const tr = document.createElement('tr');
+      tr.classList.add('anim');
+      tr.style.animationDelay = (i * 0.03) + 's';
+      tr.innerHTML = `
+        <td>
+          <div class="company-name">${r.name}</div>
+          ${r.ticker ? `<span class="ticker">${r.ticker}</span>` : ''}
+        </td>
+        <td><span class="sector-tag">${sectorDisplay}</span></td>
+        <td class="ratio">${mktFmt}</td>
+        ${ratioCell(r.debtRatio, 30)}
+        ${ratioCell(r.depRatio, 30)}
+        ${ratioCell(r.revRatio, 5)}
+        <td>${verdictHtml[r.verdict]}</td>
+        <td>${!isExclu ? `<button class="detail-toggle" onclick="toggleDetail('${id}')">▸ Détail</button>` : '—'}</td>
+      `;
+      tbody.appendChild(tr);
+
+      // Detail row
+      if (!isExclu) {
+        const checks = buildChecks(r);
+        const dtr = document.createElement('tr');
+        dtr.classList.add('detail-row');
+        dtr.id = id;
+        dtr.innerHTML = `
+          <td colspan="8" class="detail-cell">
+            <div class="detail-inner">${checks}</div>
+          </td>
+        `;
+        tbody.appendChild(dtr);
+      }
+    });
+  }
+
+  function buildChecks(r) {
+    function check(label, value, threshold, unit, note, pass, warn) {
+      const cls = pass ? 'ratio-pass' : 'ratio-fail';
+      const icon = pass ? '✓' : '✕';
+      return `
+        <div class="detail-check">
+          <span class="label">${label}</span>
+          <span class="value ${cls}">${icon} ${value !== null ? value.toFixed(2) + (unit||'%') : '—'}</span>
+          <span class="threshold">Seuil AAOIFI : ≤ ${threshold}${unit||'%'}</span>
+          ${note ? `<span class="note">${note}</span>` : ''}
+        </div>
+      `;
+    }
+
+    const debtPass = r.debtRatio <= 30;
+    const depPass  = r.depRatio <= 30;
+    const revPass  = r.revRatio <= 5;
+
+    const purif = r.revRatio > 0 && r.revRatio <= 5
+      ? `Purification requise : reverser ${r.revRatio.toFixed(2)}% du dividende.`
+      : '';
+
+    return [
+      check('①  Screening Qualitatif', null, null, '', 'Secteur classé comme permissible selon AAOIFI SS-21. Analyse qualitative réussie.', true, false)
+        .replace('≤ %', 'Approuvé').replace('null%', '✓ Approuvé'),
+      check('②  Dette Ribawi / Mkt Cap', r.debtRatio, 30, '%',
+        `Dettes portant intérêt : ${r.debt.toLocaleString('fr')} MDH / Mkt Cap : ${r.mktcap.toLocaleString('fr')} MDH`, debtPass, r.debtRatio > 24),
+      check('③  Dépôts Ribawi / Mkt Cap', r.depRatio, 30, '%',
+        `Placements portant intérêt : ${r.deposits.toLocaleString('fr')} MDH / Mkt Cap : ${r.mktcap.toLocaleString('fr')} MDH`, depPass, r.depRatio > 24),
+      check('④  Revenus Non-Halal / Rev. Total', r.revRatio, 5, '%',
+        purif || `Revenus illicites : ${r.haramRev.toLocaleString('fr')} MDH / Total : ${r.revenue.toLocaleString('fr')} MDH`, revPass, r.revRatio > 4),
+    ].join('');
+  }
+
+  function toggleDetail(id) {
+    const row = document.getElementById(id);
+    const btn = row.previousSibling.querySelector('.detail-toggle');
+    if (row.classList.toggle('open')) {
+      btn.textContent = '▾ Masquer';
+    } else {
+      btn.textContent = '▸ Détail';
+    }
+  }
+
+  // ── INIT ───────────────────────────────────────────
+  render();
+</script>
+</body>
+</html>
