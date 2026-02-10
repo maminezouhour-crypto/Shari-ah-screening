@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screening Shariah AAOIFI — Bourse de Casablanca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:   #1a7a4a;
+      --green-l: #d6efe4;
+      --green-m: #56c68a;
+      --red:     #c0392b;
+      --red-l:   #fde8e6;
+      --amber:   #e67e22;
+      --amber-l: #fef3e2;
+      --ink:     #0d1117;
+      --ink-2:   #3a3f4a;
+      --border:  #d0d5dd;
+      --bg:      #f5f4ef;
+      --card:    #ffffff;
+      --gold:    #b8962e;
+      --gold-l:  #f7f0dc;
+      --geom:    rgba(26,122,74,.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, var(--geom) 0 1px, transparent 1px 48px),
+        repeating-linear-gradient(90deg, var(--geom) 0 1px, transparent 1px 48px);
+      pointer-events: none; z-index: 0;
+    }
+
+    header {
+      position: relative; z-index: 10;
+      background: var(--ink);
+      padding: 0 32px;
+      display: flex; align-items: stretch; gap: 0;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .header-accent {
+      width: 8px;
+      background: linear-gradient(to bottom, var(--green), var(--gold));
+      margin-right: 24px; flex-shrink: 0;
+    }
+
+    .header-content {
+      padding: 24px 0;
+      flex: 1;
+    }
+
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold-l); color: var(--gold);
+      font-size: 10px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 3px; margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: .01em;
+    }
+
+    header p {
+      font-size: 11px; color: #8b93a0;
+      margin-top: 6px; letter-spacing: .04em;
+    }
+
+    .header-logo {
+      display: flex; align-items: center; gap: 10px;
+      margin-left: auto; padding: 24px 0;
+    }
+
+    .logo-circle {
+      width: 48px; height: 48px;
+      background: var(--green);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: 'Amiri', serif;
+      font-size: 20px; color: #fff; font-weight: 700;
+    }
+
+    main {
+      position: relative; z-index: 1;
+      max-width: 1320px; margin: 0 auto;
+      padding: 32px 24px 64px;
+    }
+
+    .methodology {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .meth-item h3 {
+      font-family: 'Amiri', serif;
+      font-size: 15px; color: var(--gold);
+      margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+    }
+
+    .meth-item p { font-size: 11px; color: #9aa0ab; line-height: 1.7; }
+
+    .meth-badge {
+      display: inline-block;
+      background: var(--green); color: #fff;
+      padding: 2px 7px; font-size: 10px; border-radius: 2px;
+    }
+
+    .disclaimer {
+      background: linear-gradient(135deg, #fef9f0 0%, #fff9ed 100%);
+      border: 1.5px solid var(--gold);
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 24px;
+      margin-bottom: 28px;
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--ink-2);
+    }
+
+    .disclaimer strong {
+      color: var(--gold);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+    }
+
+    .form-card h2 {
+      font-family: 'Amiri', serif;
+      font-size: 20px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .form-card h2::before {
+      content: '＋'; font-family: 'IBM Plex Mono', monospace;
+      width: 28px; height: 28px; background: var(--green);
+      color: #fff; display: grid; place-items: center;
+      border-radius: 4px; font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-2); font-weight: 600;
+    }
+
+    .form-group input, .form-group select {
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: var(--bg);
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-hint { font-size: 9px; color: #8b93a0; }
+
+    .btn-screen {
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: var(--green);
+      color: #fff;
+      border: none; border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+
+    .btn-screen:hover { background: #145d38; }
+    .btn-screen:active { transform: scale(.98); }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      background: var(--card);
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+    }
+
+    .export-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-export {
+      padding: 10px 20px;
+      background: var(--card);
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-export:hover {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+    
+    /* Style spécifique pour le bouton import */
+    .btn-import {
+      background: var(--green-l);
+      color: var(--green);
+      border-color: var(--green);
+    }
+    .btn-import:hover {
+        background: var(--green);
+        color: #fff;
+    }
+
+    .btn-clear {
+      padding: 10px 20px;
+      background: var(--red-l);
+      color: var(--red);
+      border: 1.5px solid var(--red);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .btn-clear:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .results-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .results-header h2 {
+      font-family: 'Amiri', serif; font-size: 22px;
+    }
+
+    .total-counter {
+      font-size: 12px; color: var(--ink-2);
+      background: var(--bg); padding: 4px 12px;
+      border-radius: 20px; letter-spacing: .04em;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    .stat-card.green .stat-num { color: var(--green); }
+    .stat-card.amber .stat-num { color: var(--amber); }
+    .stat-card.red .stat-num { color: var(--red); }
+    .stat-card.grey .stat-num { color: var(--ink-2); }
+
+    .filters {
+      display: flex; gap: 8px; margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background: var(--card);
+      color: var(--ink-2);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .filter-btn:hover { border-color: var(--ink-2); }
+
+    .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .filter-btn.active-green { background: var(--green); color: #fff; border-color: var(--green); }
+    .filter-btn.active-red { background: var(--red); color: #fff; border-color: var(--red); }
+    .filter-btn.active-amber { background: var(--amber); color: #fff; border-color: var(--amber); }
+
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: var(--bg);
+      border-bottom: 2px solid var(--border);
+    }
+
+    th {
+      padding: 14px 12px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink-2);
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    th:hover {
+      background: rgba(26,122,74,.04);
+    }
+
+    th.sortable::after {
+      content: '⇅';
+      position: absolute;
+      right: 8px;
+      opacity: 0.3;
+      font-size: 12px;
+    }
+
+    th.sorted-asc::after {
+      content: '↑';
+      opacity: 1;
+      color: var(--green);
+    }
+
+    th.sorted-desc::after {
+      content: '↓';
+      opacity: 1;
+      color: var(--green);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+
+    tbody tr:hover {
+      background: rgba(26,122,74,.02);
+    }
+
+    td {
+      padding: 14px 12px;
+      vertical-align: middle;
+    }
+
+    .company-name {
+      font-weight: 600;
+      margin-bottom: 3px;
+      font-size: 13px;
+    }
+
+    .ticker {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: .08em;
+      color: var(--ink-2);
+      background: var(--bg);
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+
+    .sector-tag {
+      display: inline-block;
+      font-size: 10px;
+      background: var(--green-l);
+      color: var(--green);
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .ratio {
+      position: relative;
+      font-weight: 600;
+    }
+
+    .ratio-pass { color: var(--green); }
+    .ratio-warn { color: var(--amber); }
+    .ratio-fail { color: var(--red); }
+    .ratio-na { color: var(--ink-2); opacity: 0.5; }
+
+    .bar-wrap {
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: rgba(0,0,0,.06);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .bar-fill {
+      display: block;
+      height: 100%;
+      transition: width .3s ease;
+    }
+
+    .verdict {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .verdict-compliant {
+      background: var(--green-l);
+      color: var(--green);
+    }
+
+    .verdict-watchlist {
+      background: var(--amber-l);
+      color: var(--amber);
+    }
+
+    .verdict-noncompliant {
+      background: var(--red-l);
+      color: var(--red);
+    }
+
+    .verdict-excluded {
+      background: #e8e8e8;
+      color: #666;
+    }
+
+    .detail-toggle {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--ink-2);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all .2s;
+      font-weight: 600;
+    }
+
+    .detail-toggle:hover {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .detail-row {
+      display: none;
+      background: var(--bg);
+    }
+
+    .detail-row.open {
+      display: table-row;
+    }
+
+    .detail-cell {
+      padding: 0 !important;
+    }
+
+    .detail-inner {
+      padding: 24px 32px;
+      animation: slideDown .3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .detail-check {
+      display: grid;
+      grid-template-columns: 200px 120px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      align-items: center;
+    }
+
+    .detail-check:last-child {
+      border-bottom: none;
+    }
+
+    .detail-check .label {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .detail-check .value {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .detail-check .threshold {
+      color: var(--ink-2);
+      font-size: 10px;
+    }
+
+    .detail-check .note {
+      grid-column: 1 / -1;
+      color: var(--ink-2);
+      font-size: 10px;
+      line-height: 1.6;
+      margin-top: 4px;
+      padding: 8px 12px;
+      background: rgba(26,122,74,.04);
+      border-radius: 3px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 20px !important;
+      color: var(--ink-2);
+      font-size: 13px;
+    }
+
+    .empty-state .icon {
+      display: block;
+      font-size: 48px;
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+
+    .anim {
+      animation: fadeSlideIn .4s ease backwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .detail-check {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .detail-check .value,
+      .detail-check .threshold {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0 16px;
+        flex-wrap: wrap;
+      }
+
+      .header-accent {
+        width: 100%;
+        height: 4px;
+        margin-right: 0;
+        margin-bottom: 0;
+      }
+
+      .header-logo {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 0;
+      }
+
+      main {
+        padding: 20px 16px 40px;
+      }
+
+      .methodology {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+
+      .form-card {
+        padding: 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .toolbar {
+        flex-direction: column;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .export-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 800px;
+        font-size: 11px;
+      }
+
+      th, td {
+        padding: 10px 8px;
+      }
+    }
+
+    /* Sector Colors */
+    .sector-TELECOM { background: #e3f2fd; color: #1565c0; }
+    .sector-MINES { background: #fff3e0; color: #e65100; }
+    .sector-AGRO { background: #f1f8e9; color: #558b2f; }
+    .sector-INDUSTRIE { background: #fce4ec; color: #c2185b; }
+    .sector-IMM { background: #f3e5f5; color: #7b1fa2; }
+    .sector-ENERGIE { background: #fff9c4; color: #f57f17; }
+    .sector-DISTRIB { background: #e0f2f1; color: #00695c; }
+    .sector-TRANSPORT { background: #e8eaf6; color: #283593; }
+    .sector-SANTE { background: #fce4ec; color: #ad1457; }
+    .sector-AGRI { background: #f1f8e9; color: #33691e; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-accent"></div>
+  <div class="header-content">
+    <div class="header-badge">
+      <span>AAOIFI SS-21 Compliant</span>
+    </div>
+    <h1>Screening Shariah — Bourse de Casablanca</h1>
+    <p>Outil de conformité islamique selon les standards AAOIFI</p>
+  </div>
+  <div class="header-logo">
+    <div class="logo-circle">ش</div>
+  </div>
+</header>
+
+<main>
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>⚖️ Avertissement Juridique</strong>
+    Cet outil fournit une indication préliminaire basée sur les ratios financiers AAOIFI SS-21. Pour une validation définitive de la conformité Shariah, veuillez consulter un conseil de juristes islamiques (Shariah Board) qualifié.
+  </div>
+
+  <!-- METHODOLOGY -->
+  <div class="methodology">
+    <div class="meth-item">
+      <h3>① Screening Qualitatif</h3>
+      <p>Exclusion des secteurs interdits : banques conventionnelles, assurances, alcool, tabac, jeux de hasard, armement.</p>
+    </div>
+    <div class="meth-item">
+      <h3>② Dette Ribawi <span class="meth-badge">≤ 30%</span></h3>
+      <p>Dette totale / Capitalisation boursière moyenne 12 mois.</p>
+    </div>
+    <div class="meth-item">
+      <h3>③ Dépôts Ribawi <span class="meth-badge">≤ 30%</span></h3>
+      <p>Placements portant intérêt / Capitalisation boursière.</p>
+    </div>
+    <div class="meth-item">
+      <h3>④ Revenus Non-Halal <span class="meth-badge">≤ 5%</span></h3>
+      <p>Revenus illicites / Revenu total. Purification si > 0.</p>
+    </div>
+  </div>
+
+  <!-- ADD COMPANY FORM -->
+  <div class="form-card">
+    <h2>Analyser une nouvelle société</h2>
+    <form id="add-form" onsubmit="addCompany(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Nom de la société *</label>
+          <input type="text" id="name" required placeholder="Ex: Maroc Telecom">
+        </div>
+        <div class="form-group">
+          <label for="ticker">Code Ticker</label>
+          <input type="text" id="ticker" placeholder="Ex: IAM">
+        </div>
+        <div class="form-group">
+          <label for="sector">Secteur d'activité *</label>
+          <select id="sector" required>
+            <option value="">Sélectionner...</option>
+            <option value="TELECOM">Télécommunications</option>
+            <option value="MINES">Mines & Ressources</option>
+            <option value="AGRO">Agroalimentaire</option>
+            <option value="INDUSTRIE">Industrie</option>
+            <option value="IMM">Immobilier</option>
+            <option value="ENERGIE">Énergie</option>
+            <option value="DISTRIB">Distribution</option>
+            <option value="TRANSPORT">Transport & Logistique</option>
+            <option value="SANTE">Santé & Pharmacie</option>
+            <option value="AGRI">Agriculture</option>
+            <option value="BANK_CONV|EXCLU">Banque conventionnelle (EXCLU)</option>
+            <option value="ASSUR_CONV|EXCLU">Assurance conventionnelle (EXCLU)</option>
+            <option value="ALCOOL|EXCLU">Alcool (EXCLU)</option>
+            <option value="TABAC|EXCLU">Tabac (EXCLU)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mktcap">Capitalisation (MDH) *</label>
+          <input type="number" id="mktcap" required step="0.01" min="0" placeholder="Ex: 144000">
+        </div>
+        <div class="form-group">
+          <label for="debt">Dette portant intérêt (MDH) *</label>
+          <input type="number" id="debt" required step="0.01" min="0" placeholder="Ex: 12000">
+        </div>
+        <div class="form-group">
+          <label for="deposits">Dépôts/Placements ribawi (MDH) *</label>
+          <input type="number" id="deposits" required step="0.01" min="0" placeholder="Ex: 2500">
+        </div>
+        <div class="form-group">
+          <label for="revenue">Revenu total annuel (MDH) *</label>
+          <input type="number" id="revenue" required step="0.01" min="0" placeholder="Ex: 33800">
+        </div>
+        <div class="form-group">
+          <label for="haramRev">Revenus non-halal (MDH) *</label>
+          <input type="number" id="haramRev" required step="0.01" min="0" placeholder="Ex: 320">
+        </div>
+      </div>
+      <button type="submit" class="btn-screen">Analyser la conformité</button>
+    </form>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-card green">
+      <div class="stat-num" id="st-compliant" role="status" aria-live="polite">0</div>
+      <div class="stat-label">Conformes</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="stat-num" id="st-watch" role="status" aria-live="polite">0</div>
+      <div class="stat-label">Surveillance</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-num" id="st-noncompliant" role="status" aria-live="polite">0</div>
+      <div class="stat-label">Non Conformes</div>
+    </div>
+    <div class="stat-card grey">
+      <div class="stat-num" id="st-excluded" role="status" aria-live="polite">0</div>
+      <div class="stat-label">Exclus</div>
+    </div>
+  </div>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar">
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Rechercher par nom ou ticker..." 
+        oninput="handleSearch(this.value)"
+        aria-label="Rechercher une société"
+      >
+    </div>
+    <div class="export-buttons">
+      <!-- IMPORT BUTTON -->
+      <input type="file" id="file-import" hidden accept=".csv,.json" onchange="handleFileImport(this.files[0])">
+      <button class="btn-export btn-import" onclick="document.getElementById('file-import').click()" aria-label="Importer des données">
+        <span>📥</span> Importer
+      </button>
+      <!-- EXPORT BUTTONS -->
+      <button class="btn-export" onclick="exportCSV()" aria-label="Exporter en CSV">
+        <span>📊</span> CSV
+      </button>
+      <button class="btn-export" onclick="exportJSON()" aria-label="Exporter en JSON">
+        <span>💾</span> JSON
+      </button>
+      <button class="btn-clear" onclick="clearAll()" aria-label="Effacer toutes les données">
+        🗑️ Tout effacer
+      </button>
+    </div>
+  </div>
+
+  <!-- RESULTS SECTION -->
+  <div class="results-header">
+    <h2>Résultats du screening</h2>
+    <span class="total-counter" id="total-counter" role="status" aria-live="polite">0 société</span>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter('all', this)">Toutes</button>
+    <button class="filter-btn" onclick="setFilter('CONFORME', this)">✓ Conformes</button>
+    <button class="filter-btn" onclick="setFilter('SURVEILLANCE', this)">⚠ Surveillance</button>
+    <button class="filter-btn" onclick="setFilter('NON_CONFORME', this)">✕ Non Conformes</button>
+    <button class="filter-btn" onclick="setFilter('EXCLU', this)">⊘ Exclus</button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="sortable" onclick="sortTable('name')">Société</th>
+          <th class="sortable" onclick="sortTable('sector')">Secteur</th>
+          <th class="sortable" onclick="sortTable('mktcap')">Mkt Cap</th>
+          <th class="sortable" onclick="sortTable('debtRatio')">Dette %</th>
+          <th class="sortable" onclick="sortTable('depRatio')">Dépôts %</th>
+          <th class="sortable" onclick="sortTable('revRatio')">Rev. Haram %</th>
+          <th class="sortable" onclick="sortTable('verdict')">Verdict</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+        <tr>
+          <td colspan="8" class="empty-state">
+            <span class="icon">📊</span>
+            Ajoutez une société ou importez des données pour commencer
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <button class="btn-screen" onclick="loadDemo()">📚 Charger les données de démonstration</button>
+  </div>
+
+</main>
+
+<script>
+  // ── GLOBAL STATE ───────────────────────────────────
+  const SECTORS_FR = {
+    'TELECOM': 'Télécommunications',
+    'MINES': 'Mines & Ressources',
+    'AGRO': 'Agroalimentaire',
+    'INDUSTRIE': 'Industrie',
+    'IMM': 'Immobilier',
+    'ENERGIE': 'Énergie',
+    'DISTRIB': 'Distribution',
+    'TRANSPORT': 'Transport & Logistique',
+    'SANTE': 'Santé & Pharmacie',
+    'AGRI': 'Agriculture',
+    'BANK_CONV|EXCLU': 'Banque conventionnelle',
+    'ASSUR_CONV|EXCLU': 'Assurance conventionnelle',
+    'ALCOOL|EXCLU': 'Alcool',
+    'TABAC|EXCLU': 'Tabac',
+  };
+  
+  // Reverse map for import (French Name -> Code)
+  const SECTORS_REVERSE = {};
+  Object.entries(SECTORS_FR).forEach(([k, v]) => {
+      SECTORS_REVERSE[v.toLowerCase()] = k;
+      // Handle simplified keys too
+      SECTORS_REVERSE[k.toLowerCase()] = k; 
+  });
+
+  let companies = [];
+  let currentFilter = 'all';
+  let searchQuery = '';
+  let sortField = null;
+  let sortDirection = 'asc';
+  let nextId = 1;
+
+  // ── SCREENING LOGIC ───────────────────────────────
+  function screen(c) {
+    const isExcluded = c.sector.includes('BANK')|| c.sector.includes('ASSURANCES');|| c.sector.includes('BOISSONS SPIRITUELLES')
+    if (isExcluded) {
+      return {
+        sectorCode: c.sector.split('|')[0],
+        verdict: 'EXCLU',
+        debtRatio: null,
+        depRatio: null,
+        revRatio: null,
+      };
+    }
+
+    const sectorCode = c.sector.split('|')[0];
+
+    if (c.mktcap <= 0) return null; // Should not happen due to validation
+
+    const debtRatio = (c.debt / c.mktcap) * 100;
+    const depRatio = (c.deposits / c.mktcap) * 100;
+    const revRatio = c.revenue > 0 ? (c.haramRev / c.revenue) * 100 : 0;
+
+    const debtOk = debtRatio <= 30;
+    const depOk = depRatio <= 30;
+    const revOk = revRatio <= 5;
+
+    let verdict;
+    if (debtOk && depOk && revOk) {
+      verdict = 'CONFORME';
+    } else {
+      verdict = 'NON_CONFORME';
+    }
+
+    if (verdict === 'CONFORME') {
+      if ((debtRatio > 24 && debtRatio <= 30) ||
+          (depRatio > 24 && depRatio <= 30) ||
+          (revRatio > 4 && revRatio <= 5)) {
+        verdict = 'SURVEILLANCE';
+      }
+    }
+
+    return { sectorCode, verdict, debtRatio, depRatio, revRatio };
+  }
+
+  // ── ADD COMPANY ────────────────────────────────────
+  function addCompany(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value.trim();
+    const ticker = document.getElementById('ticker').value.trim().toUpperCase();
+    const sector = document.getElementById('sector').value;
+    const mktcap = parseFloat(document.getElementById('mktcap').value);
+    const debt = parseFloat(document.getElementById('debt').value);
+    const deposits = parseFloat(document.getElementById('deposits').value);
+    const revenue = parseFloat(document.getElementById('revenue').value);
+    const haramRev = parseFloat(document.getElementById('haramRev').value);
+
+    if (!name || !sector || isNaN(mktcap)) {
+      alert('Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+
+    companies.push({
+      id: nextId++,
+      name,
+      ticker,
+      sector,
+      mktcap,
+      debt,
+      deposits,
+      revenue,
+      haramRev,
+    });
+
+    saveToLocalStorage();
+    document.getElementById('add-form').reset();
+    render();
+  }
+
+  // ── SEARCH ─────────────────────────────────────────
+  let searchTimeout;
+  function handleSearch(query) {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      searchQuery = query.toLowerCase();
+      render();
+    }, 300);
+  }
+
+  // ── IMPORT LOGIC ───────────────────────────────────
+  function handleFileImport(file) {
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const content = e.target.result;
+      const extension = file.name.split('.').pop().toLowerCase();
+      
+      try {
+        let importedData = [];
+        
+        if (extension === 'json') {
+          importedData = parseImportJSON(content);
+        } else if (extension === 'csv') {
+          importedData = parseImportCSV(content);
+        } else {
+          alert('Format de fichier non supporté. Veuillez utiliser .csv ou .json');
+          return;
+        }
+
+        if (importedData.length === 0) {
+          alert('Aucune donnée valide trouvée dans le fichier.');
+          return;
+        }
+
+        // Merge logic: Add imported data with new IDs
+        importedData.forEach(item => {
+            // Basic validation
+            if(item.name && item.sector && item.mktcap) {
+                companies.push({
+                    ...item,
+                    id: nextId++
+                });
+            }
+        });
+
+        saveToLocalStorage();
+        render();
+        alert(`✅ Succès : ${importedData.length} sociétés importées et ajoutées.`);
+
+      } catch (err) {
+        console.error(err);
+        alert('❌ Erreur lors de la lecture du fichier. Vérifiez le format.');
+      }
+    };
+    reader.readAsText(file);
+    // Reset input to allow re-importing same file
+    document.getElementById('file-import').value = '';
+  }
+
+  function parseImportJSON(text) {
+    const json = JSON.parse(text);
+    // If it's an array, use it directly. If object, wrap in array.
+    const arr = Array.isArray(json) ? json : [json];
+    // Flatten if it contains nested 'companies' (unlikely but safe)
+    const flat = arr.flat();
+    
+    return flat.map(item => {
+        // Try to map fields flexibly
+        return {
+            name: item.name || item.Nom || item.Société,
+            ticker: item.ticker || item.Ticker || '',
+            sector: mapSectorCode(item.sector || item.Secteur || item.sectorCode),
+            mktcap: parseFloat(item.mktcap || item['Mkt Cap'] || item.Capitalisation || 0),
+            debt: parseFloat(item.debt || item.Dette || 0),
+            deposits: parseFloat(item.deposits || item.Dépôts || 0),
+            revenue: parseFloat(item.revenue || item.Revenu || 0),
+            haramRev: parseFloat(item.haramRev || item['Revenu Haram'] || 0)
+        };
+    }).filter(i => i.name); // Must have at least a name
+  }
+
+  function parseImportCSV(text) {
+    const lines = text.split(/\r?\n/);
+    if (lines.length < 2) return [];
+
+    // Parse header
+    const headers = parseCSVLine(lines[0]).map(h => h.trim().toLowerCase());
+    
+    // Map column indices
+    const map = {
+        name: headers.findIndex(h => h.includes('société') || h.includes('nom') || h.includes('name')),
+        ticker: headers.findIndex(h => h.includes('ticker')),
+        sector: headers.findIndex(h => h.includes('secteur') || h.includes('sector')),
+        mktcap: headers.findIndex(h => h.includes('mkt') || h.includes('cap') || h.includes('capitalisation')),
+        debt: headers.findIndex(h => h.includes('dette') || h.includes('debt')),
+        deposits: headers.findIndex(h => h.includes('dépôt') || h.includes('depot') || h.includes('deposit')),
+        revenue: headers.findIndex(h => h.includes('revenu') || h.includes('revenue') || h.includes('total')),
+        haramRev: headers.findIndex(h => h.includes('haram') || h.includes('illicite')),
+    };
+
+    const data = [];
+    for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const cols = parseCSVLine(lines[i]);
+        
+        const getVal = (key) => {
+            const idx = map[key];
+            if (idx === -1) return null;
+            let val = cols[idx] ? cols[idx].trim() : '';
+            // Remove quotes if wrapped
+            if (val.startsWith('"') && val.endsWith('"')) val = val.slice(1, -1);
+            return val;
+        };
+
+        data.push({
+            name: getVal('name'),
+            ticker: getVal('ticker') || '',
+            sector: mapSectorCode(getVal('sector')),
+            mktcap: parseFloat(String(getVal('mktcap')).replace(/[^0-9.-]/g, '')) || 0,
+            debt: parseFloat(String(getVal('debt')).replace(/[^0-9.-]/g, '')) || 0,
+            deposits: parseFloat(String(getVal('deposits')).replace(/[^0-9.-]/g, '')) || 0,
+            revenue: parseFloat(String(getVal('revenue')).replace(/[^0-9.-]/g, '')) || 0,
+            haramRev: parseFloat(String(getVal('haramRev')).replace(/[^0-9.-]/g, '')) || 0,
+        });
+    }
+    return data.filter(i => i.name);
+  }
+
+  // Simple CSV line parser handling quotes
+  function parseCSVLine(text) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current);
+    return result;
+  }
+
+  function mapSectorCode(input) {
+      if (!input) return '';
+      const key = String(input).toLowerCase().trim();
+      // Check if it matches a French name
+      if (SECTORS_REVERSE[key]) return SECTORS_REVERSE[key];
+      // Check if it matches a Code directly (case insensitive)
+      const directCode = Object.keys(SECTORS_FR).find(k => k.toLowerCase() === key);
+      if (directCode) return directCode;
+      // Default fallback
+      return input.toUpperCase();
+  }
+
+  // ── EXPORT CSV ─────────────────────────────────────
+  function exportCSV() {
+    const results = companies.map(c => ({ ...c, ...screen(c) }));
+    const filtered = getFilteredResults(results);
+
+    if (filtered.length === 0) {
+      alert('Aucune donnée à exporter');
+      return;
+    }
+
+    const headers = ['Société', 'Ticker', 'Secteur', 'Mkt Cap (MDH)', 'Dette', 'Dépôts', 'Revenu', 'Revenu Haram', 'Dette %', 'Dépôts %', 'Rev. Haram %', 'Verdict'];
+    
+    const rows = filtered.map(r => [
+      r.name,
+      r.ticker || '',
+      SECTORS_FR[r.sectorCode] || r.sector,
+      r.mktcap,
+      r.debt,
+      r.deposits,
+      r.revenue,
+      r.haramRev,
+      r.debtRatio !== null ? r.debtRatio.toFixed(2) : '',
+      r.depRatio !== null ? r.depRatio.toFixed(2) : '',
+      r.revRatio !== null ? r.revRatio.toFixed(2) : '',
+      r.verdict,
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    downloadFile(csvContent, 'screening-shariah.csv', 'text/csv');
+  }
+
+  // ── EXPORT JSON ────────────────────────────────────
+  function exportJSON() {
+    const results = companies.map(c => ({ ...c, ...screen(c) }));
+    const filtered = getFilteredResults(results);
+
+    if (filtered.length === 0) {
+      alert('Aucune donnée à exporter');
+      return;
+    }
+
+    // Clean up for export (remove internal runtime state if any)
+    const cleanData = filtered.map(({ sectorCode, ...rest }) => rest);
+
+    const jsonContent = JSON.stringify(cleanData, null, 2);
+    downloadFile(jsonContent, 'screening-shariah.json', 'application/json');
+  }
+
+  // ── DOWNLOAD FILE ──────────────────────────────────
+  function downloadFile(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  // ── CLEAR ALL ──────────────────────────────────────
+  function clearAll() {
+    if (confirm('Êtes-vous sûr de vouloir effacer toutes les données ?')) {
+      companies = [];
+      nextId = 1;
+      localStorage.removeItem('shariah_companies');
+      render();
+    }
+  }
+
+  // ── LOCAL STORAGE ──────────────────────────────────
+  function saveToLocalStorage() {
+    localStorage.setItem('shariah_companies', JSON.stringify(companies));
+  }
+
+  function loadFromLocalStorage() {
+    const saved = localStorage.getItem('shariah_companies');
+    if (saved) {
+      companies = JSON.parse(saved);
+      nextId = Math.max(...companies.map(c => c.id), 0) + 1;
+    }
+  }
+
+  // ── DEMO DATA ──────────────────────────────────────
+  function loadDemo() {
+    if (companies.length > 0 && !confirm('Cela va ajouter les données de démo aux données existantes. Continuer ?')) {
+        return;
+    }
+    const demo = [
+      { id:nextId, name:'Maroc Telecom', ticker:'IAM', sector:'TELECOM', mktcap:144000, debt:12000, deposits:2500, revenue:33800, haramRev:320 },
+      { id:nextId+1, name:'OCP S.A.', ticker:'OCP', sector:'MINES', mktcap:127000, debt:31000, deposits:4100, revenue:52000, haramRev:890 },
+      { id:nextId+2, name:'Attijariwafa Bank', ticker:'ATW', sector:'BANK_CONV|EXCLU', mktcap:68000, debt:0, deposits:0, revenue:22000, haramRev:0 },
+    ];
+    companies = [...companies, ...demo];
+    nextId += 3;
+    saveToLocalStorage();
+    render();
+  }
+
+  // ── FILTER & SORT ─────────────────────────────────
+  function setFilter(f, btn) {
+    currentFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active','active-green','active-red','active-amber');
+    });
+    if (f === 'all') btn.classList.add('active');
+    else if (f === 'CONFORME') btn.classList.add('active-green');
+    else if (f === 'NON_CONFORME') btn.classList.add('active-red');
+    else if (f === 'SURVEILLANCE') btn.classList.add('active-amber');
+    else btn.classList.add('active');
+    render();
+  }
+
+  function sortTable(field) {
+    if (sortField === field) {
+      sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortField = field;
+      sortDirection = 'asc';
+    }
+
+    document.querySelectorAll('th').forEach(th => th.classList.remove('sorted-asc', 'sorted-desc'));
+    const headers = ['name', 'sector', 'mktcap', 'debtRatio', 'depRatio', 'revRatio', 'verdict'];
+    const index = headers.indexOf(field);
+    if (index !== -1) {
+      const th = document.querySelectorAll('th')[index];
+      th.classList.add(sortDirection === 'asc' ? 'sorted-asc' : 'sorted-desc');
+    }
+    render();
+  }
+
+  function getFilteredResults(results) {
+    let filtered = results;
+
+    if (searchQuery) {
+      filtered = filtered.filter(r => 
+        r.name.toLowerCase().includes(searchQuery) ||
+        (r.ticker && r.ticker.toLowerCase().includes(searchQuery))
+      );
+    }
+
+    if (currentFilter !== 'all') {
+      filtered = filtered.filter(r => r.verdict === currentFilter);
+    }
+
+    if (sortField) {
+      filtered.sort((a, b) => {
+        let aVal = a[sortField];
+        let bVal = b[sortField];
+        if (aVal === null) return 1;
+        if (bVal === null) return -1;
+        if (typeof aVal === 'string') {
+          aVal = aVal.toLowerCase();
+          bVal = bVal.toLowerCase();
+        }
+        if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1;
+        if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1;
+        return 0;
+      });
+    }
+    return filtered;
+  }
+
+  // ── RENDER ─────────────────────────────────────────
+  function render() {
+    const tbody = document.getElementById('result-body');
+    tbody.innerHTML = '';
+
+    const results = companies.map(c => {
+      const screenResult = screen(c);
+      return { ...c, ...screenResult };
+    });
+
+    // Stats
+    const counts = { CONFORME:0, SURVEILLANCE:0, NON_CONFORME:0, EXCLU:0 };
+    results.forEach(r => counts[r.verdict] = (counts[r.verdict]||0) + 1);
+    document.getElementById('st-compliant').textContent = counts.CONFORME;
+    document.getElementById('st-watch').textContent = counts.SURVEILLANCE;
+    document.getElementById('st-noncompliant').textContent = counts.NON_CONFORME;
+    document.getElementById('st-excluded').textContent = counts.EXCLU;
+
+    const filtered = getFilteredResults(results);
+    document.getElementById('total-counter').textContent = filtered.length + ' société' + (filtered.length !== 1 ? 's' : '');
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="empty-state"><span class="icon">🔍</span>Aucune société dans cette catégorie</td></tr>`;
+      return;
+    }
+
+    filtered.forEach((r, i) => {
+      const id = `detail-${r.id}`;
+      const isExclu = r.verdict === 'EXCLU';
+
+      function ratioCell(val, max) {
+        if (val === null) return `<td class="ratio ratio-na">—</td>`;
+        const cls = val <= max * 0.8 ? 'ratio-pass' : val <= max ? 'ratio-warn' : 'ratio-fail';
+        const pct = Math.min(val / (max * 1.5) * 100, 100);
+        const fillColor = cls === 'ratio-pass' ? '#56c68a' : cls === 'ratio-warn' ? '#e67e22' : '#c0392b';
+        return `<td class="ratio ${cls}">${val.toFixed(1)}%
+          <span class="bar-wrap"><span class="bar-fill" style="width:${pct}%;background:${fillColor}"></span></span>
+        </td>`;
+      }
+
+      const verdictHtml = {
+        'CONFORME':      `<span class="verdict verdict-compliant">✓ Conforme</span>`,
+        'SURVEILLANCE':  `<span class="verdict verdict-watchlist">⚠ Surveillance</span>`,
+        'NON_CONFORME':  `<span class="verdict verdict-noncompliant">✕ Non conforme</span>`,
+        'EXCLU':         `<span class="verdict verdict-excluded">⊘ Exclu</span>`,
+      };
+
+      const mktFmt = r.mktcap > 0 ? (r.mktcap >= 1000 ? (r.mktcap/1000).toFixed(1)+'B' : r.mktcap+'M') + ' MAD' : '—';
+      const sectorDisplay = SECTORS_FR[r.sectorCode] || r.sector;
+
+      const tr = document.createElement('tr');
+      tr.classList.add('anim');
+      tr.style.animationDelay = (i * 0.03) + 's';
+      tr.innerHTML = `
+        <td>
+          <div class="company-name">${r.name}</div>
+          ${r.ticker ? `<span class="ticker">${r.ticker}</span>` : ''}
+        </td>
+        <td><span class="sector-tag sector-${r.sectorCode}">${sectorDisplay}</span></td>
+        <td class="ratio">${mktFmt}</td>
+        ${ratioCell(r.debtRatio, 30)}
+        ${ratioCell(r.depRatio, 30)}
+        ${ratioCell(r.revRatio, 5)}
+        <td>${verdictHtml[r.verdict]}</td>
+        <td>${!isExclu ? `<button class="detail-toggle" onclick="toggleDetail('${id}')" aria-expanded="false">▸ Détail</button>` : '—'}</td>
+      `;
+      tbody.appendChild(tr);
+
+      if (!isExclu) {
+        const checks = buildChecks(r);
+        const dtr = document.createElement('tr');
+        dtr.classList.add('detail-row');
+        dtr.id = id;
+        dtr.innerHTML = `<td colspan="8" class="detail-cell"><div class="detail-inner">${checks}</div></td>`;
+        tbody.appendChild(dtr);
+      }
+    });
+  }
+
+  function buildChecks(r) {
+    function check(label, value, threshold, unit, note, pass) {
+      const cls = pass ? 'ratio-pass' : 'ratio-fail';
+      const icon = pass ? '✓' : '✕';
+      return `
+        <div class="detail-check">
+          <span class="label">${label}</span>
+          <span class="value ${cls}">${icon} ${value !== null ? value.toFixed(2) + (unit||'%') : '—'}</span>
+          <span class="threshold">Seuil AAOIFI : ≤ ${threshold}${unit||'%'}</span>
+          ${note ? `<span class="note">${note}</span>` : ''}
+        </div>
+      `;
+    }
+
+    const debtPass = r.debtRatio <= 30;
+    const depPass  = r.depRatio <= 30;
+    const revPass  = r.revRatio <= 5;
+    const purif = r.revRatio > 0 && r.revRatio <= 5 ? `Purification recommandée : ${r.revRatio.toFixed(2)}% du dividende.` : '';
+
+    return [
+      check('① Screening Qualitatif', null, null, '', 'Secteur permissible.', true)
+        .replace('≤ %', 'Approuvé').replace('null%', '✓ Approuvé'),
+      check('② Dette Ribawi / Mkt Cap', r.debtRatio, 30, '%', `Dette : ${r.debt.toLocaleString('fr')} MDH`, debtPass),
+      check('③ Dépôts Ribawi / Mkt Cap', r.depRatio, 30, '%', `Placements : ${r.deposits.toLocaleString('fr')} MDH`, depPass),
+      check('④ Revenus Non-Halal / Total', r.revRatio, 5, '%', purif || `Haram : ${r.haramRev.toLocaleString('fr')} MDH`, revPass),
+    ].join('');
+  }
+
+  function toggleDetail(id) {
+    const row = document.getElementById(id);
+    const btn = row.previousSibling.querySelector('.detail-toggle');
+    const isOpen = row.classList.toggle('open');
+    btn.textContent = isOpen ? '▾ Masquer' : '▸ Détail';
+    btn.setAttribute('aria-expanded', isOpen);
+  }
+
+  // ── INIT ───────────────────────────────────────────
+  loadFromLocalStorage();
+  render();
+</script>
+</body>
+</html>
